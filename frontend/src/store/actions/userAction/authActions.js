@@ -21,13 +21,8 @@ export const userLogin = createAsyncThunk(
       localStorage.setItem("userInfo", JSON.stringify(data));
       return data;
     } catch (error) {
-<<<<<<< HEAD
-      if (error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message);
-=======
       if (error.response && error.response.data["detail"]) {
         return rejectWithValue(error.response.data["detail"]);
->>>>>>> df0ee14 (fix)
       } else {
         return rejectWithValue(error.message);
       }

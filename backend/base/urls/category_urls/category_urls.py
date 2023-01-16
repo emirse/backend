@@ -15,10 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-<<<<<<< HEAD
-from base.serializer import MyTokenObtainPairView
-=======
->>>>>>> df0ee14 (fix)
 from base.views.category_views.category_views import get_category
 urlpatterns = [
     path('category/', get_category.as_view(), name='get_category'),

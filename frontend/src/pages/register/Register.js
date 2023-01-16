@@ -1,54 +1,29 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-=======
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
->>>>>>> df0ee14 (fix)
 import { Button, Form } from "react-bootstrap";
 
 import { userRegister } from "../../store/actions/userAction/registerAction";
 import FormContainer from "../../components/formContainer/FormContainer";
 import { useNavigate } from "react-router";
-<<<<<<< HEAD
-=======
 import Message from "../../components/message/Message";
->>>>>>> df0ee14 (fix)
 
 function Register() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-<<<<<<< HEAD
-  const [name, setName] = useState("");
-=======
   const [first_name, setName] = useState("");
->>>>>>> df0ee14 (fix)
   const [lastname, setlastname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
-<<<<<<< HEAD
-
-=======
   const { error, success, loading } = useSelector((state) => state.register);
   console.log(error, success, loading);
->>>>>>> df0ee14 (fix)
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setMessage("Parola Eşleşmedi");
     } else {
-<<<<<<< HEAD
-      dispatch(userRegister({ name, lastname, email, password }));
-      navigate("/");
-    }
-  };
-
-  return (
-    <FormContainer param={submitHandler}>
-=======
       dispatch(userRegister({ first_name, lastname, email, password }));
     }
   };
@@ -59,18 +34,13 @@ function Register() {
   return (
     <FormContainer param={submitHandler}>
       {error && <Message variant="danger">{error}</Message>}
->>>>>>> df0ee14 (fix)
       <Form.Group controlId="first_name">
         <Form.Label>İsim</Form.Label>
         <Form.Control
           name="first_name"
           type="text"
           required
-<<<<<<< HEAD
-          value={name}
-=======
           value={first_name}
->>>>>>> df0ee14 (fix)
           placeholder="Ad"
           onChange={(e) => setName(e.target.value)}
         />

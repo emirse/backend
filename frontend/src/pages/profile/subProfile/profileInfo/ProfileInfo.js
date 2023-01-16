@@ -7,20 +7,12 @@ import Loader from "../../../../components/loader/Loader";
 import Message from "../../../../components/message/Message";
 import { categoryAction } from "../../../../store/actions/categoryAction/categoryAction";
 import { userProfile } from "../../../../store/actions/userAction/profileAction";
-<<<<<<< HEAD
-
-import "./profileinfo.css";
-function ProfileInfo() {
-  const [name, setName] = useState("");
-  const [lastname, setlastname] = useState("");
-=======
 import { userUpdateProfile } from "../../../../store/actions/userAction/userProfileUpdateAction";
 
 import "./profileinfo.css";
 function ProfileInfo() {
   const [first_name, setName] = useState("");
   const [last_name, setlastname] = useState("");
->>>>>>> df0ee14 (fix)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -28,13 +20,6 @@ function ProfileInfo() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-<<<<<<< HEAD
-  const { userInfo } = useSelector((state) => state.auth);
-  const [cardQuantitiy, setCardQuantitiy] = useState(0);
-
-  const { userDetails, loading, error } = useSelector((state) => state.profile);
-
-=======
   const { userInfo, success } = useSelector((state) => state.auth);
   const { userDetails, loading, error } = useSelector((state) => state.profile);
   const {
@@ -42,23 +27,10 @@ function ProfileInfo() {
     error: errorUpdate,
     success: successUpdate,
   } = useSelector((state) => state.updateProfile);
->>>>>>> df0ee14 (fix)
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     } else {
-<<<<<<< HEAD
-      if (!userDetails || userDetails.id !== userInfo.id) {
-        dispatch(userProfile());
-      }
-    }
-  }, [userDetails, loading]);
-
-  const submitHandler = (e) => {};
-
-  return (
-    <FormContainer param={submitHandler}>
-=======
       if (!userDetails || !userDetails.first_name) {
         dispatch(userProfile(userInfo.token));
       }
@@ -90,7 +62,6 @@ function ProfileInfo() {
       {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
       {successUpdate && <Message variant="primary">{successUpdate}</Message>}
 
->>>>>>> df0ee14 (fix)
       {[userDetails].map((userDetail, idx) => (
         <div key={idx} className="profile-style">
           <h1>Profilim</h1>
@@ -100,14 +71,8 @@ function ProfileInfo() {
             <Form.Control
               name="first_name"
               type="text"
-<<<<<<< HEAD
-              required
-              value={name}
-              placeholder={userDetail.name}
-=======
               value={first_name}
               placeholder={userDetail.first_name}
->>>>>>> df0ee14 (fix)
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
@@ -116,12 +81,7 @@ function ProfileInfo() {
             <Form.Control
               name="last_name"
               type="text"
-<<<<<<< HEAD
-              required
-              value={lastname}
-=======
               value={last_name}
->>>>>>> df0ee14 (fix)
               placeholder={userDetail.last_name}
               onChange={(e) => setlastname(e.target.value)}
             />
@@ -131,10 +91,6 @@ function ProfileInfo() {
             <Form.Control
               name="email"
               type="email"
-<<<<<<< HEAD
-              required
-=======
->>>>>>> df0ee14 (fix)
               value={email}
               placeholder={userDetail.email}
               onChange={(e) => setEmail(e.target.value)}
@@ -164,10 +120,6 @@ function ProfileInfo() {
           </Form.Group>
           {message}
           <Button
-<<<<<<< HEAD
-            onClick={() => userProfile}
-=======
->>>>>>> df0ee14 (fix)
             className="login-register-btn mt-3"
             variant="primary"
             type="submit"

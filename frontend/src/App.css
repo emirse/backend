@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 html,
 body {
   margin: 0;
@@ -14,20 +12,13 @@ body:before {
   width: 0;
 }
 
->>>>>>> df0ee14 (fix)
 a {
   color: black !important;
 }
 
-<<<<<<< HEAD
-.app-container {
-  display: flex;
-  height: 1250px;
-=======
 
 
 #main {
   overflow: auto;
   padding-bottom: 30px;
->>>>>>> df0ee14 (fix)
 }
