@@ -1,0 +1,5 @@
+.card-gap {
+    gap: 10px;
+    margin-bottom: 20px;
+    pointer-events: visibleStroke;
+}

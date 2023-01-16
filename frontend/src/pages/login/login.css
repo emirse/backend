@@ -1,0 +1,36 @@
+.remember-register-size {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 15px;
+}
+
+
+.services-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 50px;
+    height: 150px;
+    background-image: url("../../../public/assets/images/services-img.jpg");
+    border-radius: 40px;
+
+}
+
+
+.login-register-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65px;
+    width: 250px;
+    color: black !important;
+    background-color: white !important;
+    border-radius: 20px !important;
+    box-shadow: 2px 2px #F57538;
+}
+
+.login-register-btn:hover {
+    background-color: #F57538 !important;
+    color: white !important;
+}

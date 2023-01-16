@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+.footer-size {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 250px;
+    flex-shrink: 0;
+    background-color: #F57538;
+=======
+#footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 180px;
+    clear: both;
+>>>>>>> df0ee14 (fix)
+    background: linear-gradient(90deg, rgb(235, 195, 61), #F57538, rgb(235, 195, 61));
+}

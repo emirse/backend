@@ -1,0 +1,33 @@
+<<<<<<< HEAD
+=======
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body:before {
+  content: "";
+  height: 100%;
+  float: left;
+  width: 0;
+}
+
+>>>>>>> df0ee14 (fix)
+a {
+  color: black !important;
+}
+
+<<<<<<< HEAD
+.app-container {
+  display: flex;
+  height: 1250px;
+=======
+
+
+#main {
+  overflow: auto;
+  padding-bottom: 30px;
+>>>>>>> df0ee14 (fix)
+}
