@@ -1,20 +1,23 @@
 import React from "react";
-import "./home.css";
-import Product from "../../components/product/Product";
+import Product from "../../components/products/Products";
 import Slider from "../../components/slider/Slider";
-import { Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
+import Jumbotron from "../../components/jumbotron/Jumbotron";
 
 function Home() {
   return (
-    <Container className="home-container">
-      <Row>
+    <div>
+      <Container fluid>
         <Slider />
-        <h1 style={{ marginTop: "25px" }}>Ürünler</h1>
-        <Product />
-        <h1>İlgini Çekebilecek Ürünler</h1>
-        <Product />
-      </Row>
-    </Container>
+      </Container>
+      <Container>
+        <Jumbotron />
+        <Row className="d-flex justify-content-center align-items-center">
+          <Product obj={"Ürünler"} />
+          <Product obj={"İlgini Çekebilecek Ürünler"} />
+        </Row>
+      </Container>
+    </div>
   );
 }
 

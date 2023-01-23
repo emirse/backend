@@ -3,36 +3,40 @@ import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import FormContainer from "../../../../components/formContainer/FormContainer";
-import Loader from "../../../../components/loader/Loader";
 import Message from "../../../../components/message/Message";
-import { categoryAction } from "../../../../store/actions/categoryAction/categoryAction";
 import { userProfile } from "../../../../store/actions/userAction/profileAction";
 import { userUpdateProfile } from "../../../../store/actions/userAction/userProfileUpdateAction";
 
 import "./profileinfo.css";
 function ProfileInfo() {
-  const [first_name, setName] = useState("");
-  const [last_name, setlastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { userInfo, success } = useSelector((state) => state.auth);
-  const { userDetails, loading, error } = useSelector((state) => state.profile);
+  const { userDetails, loading, error, success: successProfile } = useSelector(
+    (state) => state.profile
+  );
   const {
     loading: loadingUpdate,
     error: errorUpdate,
     success: successUpdate,
   } = useSelector((state) => state.updateProfile);
+  console.log(error);
+  const [first_name, setName] = useState(userDetails.first_name);
+  const [last_name, setlastname] = useState(userDetails.last_name);
+  const [email, setEmail] = useState(userDetails.email);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
+
   useEffect(() => {
     if (!userInfo) {
       navigate("/login");
     } else {
-      if (!userDetails || !userDetails.first_name) {
+      if (!userDetails) {
         dispatch(userProfile(userInfo.token));
+      } else if (error) {
+        navigate("/login");
       }
     }
   }, [userInfo, dispatch, userDetails, successUpdate]);

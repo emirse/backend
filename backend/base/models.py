@@ -34,7 +34,7 @@ class Category(MPTTModel):
     updated_at = models.DateTimeField(auto_now=True)
 
     class MPTTMeta:
-        order_insertion_by = ['title']
+        order_insertion_by = ['-created_at']
 
     def __str__(self):
         full_path = [self.title]

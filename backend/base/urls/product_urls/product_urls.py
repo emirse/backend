@@ -15,17 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from base.urls.category_urls import category_urls
-from base.urls.product_urls import product_urls
-from base.urls.user_urls import user_urls
-from django.conf.urls.static import static
-from django.conf import settings
-
+from base.views.product_views.products_view import get_product
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api/user/", include(user_urls)),
-    path("api/categories/", include(category_urls)),
-    path("api/product/", include(product_urls)),
+    path('<slug:slug>', get_product.as_view(), name='get_product'),
 
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

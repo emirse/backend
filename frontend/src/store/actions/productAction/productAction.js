@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const backendUrl = "http://localhost:8000";
 
-export const categoryAction = createAsyncThunk("/category", async () => {
+export const productAction = createAsyncThunk("/product", async () => {
   try {
     const config = {
       headers: {

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
-from base.models import Category
+from base.models import Category, Product
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from rest_framework.exceptions import APIException, AuthenticationFailed
 
@@ -38,3 +38,10 @@ class CategorySerializer(ModelSerializer):
         serializer = self.__class__(
             obj.get_children(), many=True, context=self.context)
         return serializer.data
+
+
+class ProductSerializer(ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = '__all__'

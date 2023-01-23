@@ -1,7 +1,6 @@
 import React from "react";
 import { Row, Table } from "react-bootstrap";
 import PaginationComp from "../../../../components/pagination/PaginationComp";
-import FormContainer from "../../../../components/formContainer/FormContainer";
 import "./orders.css";
 function Orders() {
   return (

@@ -1,27 +1,16 @@
-import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axiosInstance from "../../authInstance";
 
-const backendUrl = "http://localhost:8000";
+export const userProfile = createAsyncThunk("user/profile", async () => {
+  /*userInfo*/
+  try {
+    let response = await axiosInstance.get("api/user/profile/");
 
-export const userProfile = createAsyncThunk(
-  "user/profile",
-  async (userInfo) => {
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `bearer ${userInfo}`,
-        },
-      };
-      const { data } = await axios.get(
-        `${backendUrl}/api/user/profile/`,
-        config
-      );
-      return data;
-    } catch (error) {
-      if (error.message) {
-        return error.message;
-      }
+    return response.data;
+  } catch (error) {
+    if (error.message) {
+      localStorage.clear();
+      return error.message;
     }
   }
-);
+});

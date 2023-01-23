@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { userLogin } from "./authActions";
 
 const backendUrl = "http://localhost:8000";
 

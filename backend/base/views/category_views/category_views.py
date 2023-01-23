@@ -9,10 +9,12 @@ from django.views.decorators.csrf import csrf_exempt
 
 class get_category(generics.ListAPIView):
     queryset = Category.objects.all()
+   
     serializer_class = CategorySerializer
  
     def list(self, request, *args, **kwargs):
         qs = self.get_queryset().get_descendants(include_self=True).get_cached_trees()
         serializer = self.get_serializer(qs, many=True)
+        
         return Response(serializer.data)
         

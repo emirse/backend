@@ -14,6 +14,7 @@ class CategoryAdmin(MPTTModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'price', 'amount', 'status']
     list_filter = ['status', 'category']
+    prepopulated_fields = {'slug': ('title',)}
 
 
 admin.site.register(Category, CategoryAdmin)
