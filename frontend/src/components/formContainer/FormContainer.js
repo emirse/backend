@@ -5,7 +5,7 @@ function FormContainer({ param, children }) {
   return (
     <div>
       <Form onSubmit={param}>
-        <Container className="form-container mt-5">
+        <Container className="form-container">
           <Row className="form-style">{children}</Row>
         </Container>
       </Form>

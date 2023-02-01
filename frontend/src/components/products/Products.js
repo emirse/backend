@@ -6,11 +6,11 @@ import { Col, Row } from "react-bootstrap";
 
 function Products({ obj }) {
   return (
-    <div className="mb-5">
+    <Container className="mb-5">
       <Container>
         <h1 className="">{obj}</h1>
         <Row>
-          <Col xs={12} md={4} l={4} xl={4} xs-mb={3}>
+          <Col xs={12} md={4} l={4} xl={4}>
             <Link className="card-gap " to="login">
               <Card>
                 <Card.Img
@@ -65,7 +65,7 @@ function Products({ obj }) {
           </Col>
         </Row>
       </Container>
-    </div>
+    </Container>
   );
 }
 

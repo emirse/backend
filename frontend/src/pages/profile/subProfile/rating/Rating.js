@@ -1,12 +1,12 @@
 import React from "react";
-import { Row, Table } from "react-bootstrap";
+import { Container, Row, Table } from "react-bootstrap";
 import PaginationComp from "../../../../components/pagination/PaginationComp";
 
 function Rating() {
   return (
-    <div>
-      <div>
-        <h1>Değerlendirmelerim</h1>{" "}
+    <Container>
+      <Row>
+        <h1>Değerlendirmelerim</h1>
         <Row className="parent">
           <Table striped bordered hover size="sm">
             <thead>
@@ -51,8 +51,8 @@ function Rating() {
             <PaginationComp />
           </div>
         </Row>
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 }
 

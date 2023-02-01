@@ -11,8 +11,8 @@ function SelectBox() {
           scrollbarColor: "black",
         }}
       >
-        <Col p-0>
-          <Form className="mt-3 mb-3 d-flex flex-column justify-content-center align- items center">
+        <Col>
+          <Form className="mt-3 mb-3 d-flex flex-column justify-content-center ">
             <h5>Model</h5>
             <hr />
             <Form.Check

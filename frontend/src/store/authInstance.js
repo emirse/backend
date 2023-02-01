@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
 import dayjs from "dayjs";
 
-const baseURL = "http://localhost:8000/";
+const baseURL = "http://localhost:8000";
 const authTokens = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : "";
@@ -28,11 +28,11 @@ axiosInstance.interceptors.request.use(async (req) => {
   const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
   console.log("isExpired :", isExpired);
   if (!isExpired) return req;
-  console.log("as");
 
-  const response = await axios.post(`${baseURL}api/user/refresh/`, {
+  const response = await axios.post(`${baseURL}/api/user/refresh/`, {
     refresh: authTokens.refresh,
   });
+
   authTokens.token = response.data.token;
   localStorage.setItem("userInfo", JSON.stringify(authTokens));
   req.headers.Authorization = `bearer ${authTokens.token}`;

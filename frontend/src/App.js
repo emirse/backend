@@ -6,7 +6,6 @@ import Home from "./pages/home/Home";
 import Footer from "./components/footer/Footer";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-import ProfileInfo from "./pages/profile/subProfile/profileInfo/ProfileInfo";
 import Orders from "./pages/profile/subProfile/orders/Orders";
 import CompletedOrders from "./pages/profile/subProfile/completedOrders/CompletedOrders";
 import UserAddresses from "./pages/profile/subProfile/userAddresses/UserAddresses";
@@ -15,36 +14,39 @@ import { Container } from "react-bootstrap";
 import Message from "./components/message/Message";
 import React from "react";
 
-import CategoryPage from "./pages/productsPage/ProductsPage";
-import Products from "./components/products/Products";
 import ProductsPage from "./pages/productsPage/ProductsPage";
+import BottomBar from "./components/bottomBar/BottomBar";
+import ProductDetailPage from "./pages/productDetailPage/ProductDetailPage";
+import ProfilePage from "./pages/profile/ProfilePage";
+import Shop from "./pages/shop/Shop";
 function App() {
   return (
     <>
-      <Container
-        breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
-        minBreakpoint="xxs"
-        fluid
-        className="m-0 p-0"
-      >
+      <Container fluid className="m-0 p-0 bg-dark text-light">
         <Header />
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/profileinfo" element={<ProfileInfo />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/completedorders" element={<CompletedOrders />} />
           <Route path="/useraddresses" element={<UserAddresses />} />
           <Route path="/rating" element={<Rating />} />
           <Route path="/urunler/:slug" element={<ProductsPage />} />
           <Route path="/urunler/:slug/:slug" element={<ProductsPage />} />
+          <Route path="/urunler/urun" element={<ProductDetailPage />} />
+          <Route path="/market/" element={<Shop />} />
+
           <Route
             path="*"
             element={<Message variant="danger" children="Sayfa Bulunamadı" />}
           />
         </Routes>
-        <Footer id="footer" />{" "}
+
+        <BottomBar />
+        <Footer />
       </Container>
     </>
   );

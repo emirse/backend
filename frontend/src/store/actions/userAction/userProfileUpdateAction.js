@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axiosInstance from "../../authInstance";
 
 const backendUrl = "http://localhost:8000";
 
@@ -9,19 +10,12 @@ export const userUpdateProfile = createAsyncThunk(
     console.log(user);
     console.log(token);
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `bearer ${token}`,
-        },
-      };
-      const { data } = await axios.put(
+      let response = await axiosInstance.put(
         `${backendUrl}/api/user/profile/update`,
-        user,
-        config
+        user
       );
-
-      return data;
+      console.log(response.data);
+      return response.data;
     } catch (error) {
       if (error.message && error.response) {
         return rejectWithValue(error.response.data.detail);

@@ -1,13 +1,12 @@
 from django.contrib.auth.models import User
-from base.serializer import UserSerializer
+from base.serializer import UserSerializer, UserDetailUpdateSerializer
 from base.authentication import create_access_token, create_refresh_token, decode_access_token, decode_refresh_token
-
 from rest_framework import status
 from rest_framework.authentication import get_authorization_header
 from rest_framework.response import Response
 from rest_framework.exceptions import APIException, AuthenticationFailed
 from rest_framework.views import APIView
-from rest_framework import exceptions
+from rest_framework.generics import get_object_or_404
 
 
 class RegisterAPIView(APIView):
@@ -40,43 +39,6 @@ class LoginAPIView(APIView):
         return response
 
 
-class UserAPIView(APIView):
-
-    def get(self, request):
-
-        auth = get_authorization_header(request).split()
-
-        if auth and len(auth) == 2:
-            token = auth[1].decode('utf-8')
-            id = decode_access_token(token)
-            user = User.objects.filter(pk=id).first()
-            return Response(UserSerializer(user).data)
-        raise AuthenticationFailed('unauthenticated')
-
-
-class UserUpdateAPIView(APIView):
-
-    def put(self, request):
-        user = User.objects.filter(id=request.data['id']).first()
-
-        if not user.check_password(request.data['password']):
-            raise APIException('Hatalı Şifre')
-
-        user = request.user
-        serializer = UserSerializer(user)
-        data = request.data
-        user = User.objects.filter().first()
-        print(user.last_name)
-        user.first_name = data['first_name']
-        user.last_name = data['last_name']
-        user.email = data['email']
-        user.save()
-
-        print(data)
-
-        return Response(serializer.data)
-
-
 class RefreshAPIView(APIView):
     def post(self, request):
         id = decode_refresh_token(request.data['refresh'])
@@ -86,22 +48,31 @@ class RefreshAPIView(APIView):
         })
 
 
-"""@api_view(['POST'])
+class UserDetailUpdateAPIView(APIView):
 
+    def get_object(self, request):
+        auth = get_authorization_header(request).split()
 
+        if auth and len(auth) == 2:
+            token = auth[1].decode('utf-8')
+            id = decode_access_token(token)
+            user = get_object_or_404(User, pk=id)
+            return user
+        raise AuthenticationFailed('unauthenticated')
 
-@api_view(['PUT'])
-@permission_classes([IsAuthenticated])
-def update_user_profile(request):
-    user = request.user
-    serializer = UserSerializerWithToken(user, many=False)
-    data = request.data
-    user.first_name = data['name']
-    user.username = data['email']
-    user.email = data['email']
-    if data['password'] != '':
-        user.password = make_password(data['password'])
-    user.save()
+    def get(self, request):
+        user = self.get_object(request)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
 
-    return Response(serializer.data)
-"""
+    def put(self, request):
+        user = self.get_object(request)
+        if request.data['username'] == "":
+            request.data['username'] = user.email
+        serializer = UserDetailUpdateSerializer(user, data=request.data)
+
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

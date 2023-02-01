@@ -4,10 +4,7 @@ import { Badge, Button } from "react-bootstrap";
 function BadgeComp({ cardQuantitiy }) {
   return (
     <Button variant="transparent" className="position-relative">
-      <i
-        style={{ color: "wheat" }}
-        className="fa-solid fa-cart-shopping shopping-cart rounded-pill position-relative "
-      ></i>
+      <i className="fa-solid fa-cart-shopping  position-relative text-light"></i>
       <Badge
         style={{
           height: "5px",
@@ -16,6 +13,7 @@ function BadgeComp({ cardQuantitiy }) {
           alignItems: "center",
           justifyContent: "center",
           top: "5px",
+          border: "none",
         }}
         className="position-absolute start-100 translate-middle p-2 border border-light rounded-circle"
         bg="transparent"

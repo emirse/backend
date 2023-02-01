@@ -17,6 +17,11 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 
+class ShopAdmin(admin.ModelAdmin):
+    list_display = ['shop_name']
+    prepopulated_fields = {'slug': ('shop_name',)}
+
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Orders,)
@@ -24,4 +29,4 @@ admin.site.register(Comment, )
 admin.site.register(Faq, )
 admin.site.register(ImageGallery, )
 admin.site.register(ProductOrder,)
-admin.site.register(Shop, )
+admin.site.register(Shop, ShopAdmin)

@@ -45,6 +45,26 @@ class Category(MPTTModel):
         return '>>'.join(full_path[::-1])
 
 
+class Shop(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    shop_name = models.CharField(max_length=30, null=False, blank=True)
+    keywords = models.CharField(max_length=50, null=True, blank=True)
+    description = models.CharField(max_length=1000, null=True, blank=True)
+    image = models.ImageField(null=False, blank=False, default="images/")
+    rating = models.IntegerField(default=0, null=True, blank=True)
+    status = models.CharField(
+        default=DEFAULT_CONFIRMATION_STATUS,
+        choices=CONFIRMATION_STATUS,
+        max_length=12
+    )
+    slug = models.SlugField(null=False, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.shop_name
+
+
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, null=False, blank=False)
@@ -62,30 +82,11 @@ class Product(models.Model):
         choices=STATUS,
         max_length=12,
     )
+    shop = models.ForeignKey(
+        Shop, on_delete=models.CASCADE, related_name="shop")
     slug = models.SlugField(null=False, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-
-class Shop(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    shop_name = models.CharField(max_length=30, null=False, blank=True)
-    keywords = models.CharField(max_length=50, null=True, blank=True)
-    description = models.CharField(max_length=1000, null=True, blank=True)
-    image = models.ImageField(null=False, blank=False, default="images/")
-    rating = models.IntegerField(default=0, null=False, blank=False)
-    status = models.CharField(
-        default=DEFAULT_CONFIRMATION_STATUS,
-        choices=CONFIRMATION_STATUS,
-        max_length=12
-    )
-    slug = models.SlugField(null=False, unique=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.shop_name
 
 
 class Comment(models.Model):

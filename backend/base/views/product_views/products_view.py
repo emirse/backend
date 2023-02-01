@@ -10,7 +10,7 @@ from rest_framework.exceptions import APIException, AuthenticationFailed
 
 
 
-class get_product(APIView):
+class get_products(APIView):
 
     def get(self, request):
       

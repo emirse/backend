@@ -46,9 +46,7 @@ INSTALLED_APPS = [
 
     # installed package
     'rest_framework',
-
-    'rest_framework_swagger',
-
+    'django_extensions',
     'corsheaders',
     'mptt',
 ]

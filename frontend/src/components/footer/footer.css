@@ -1,9 +1,0 @@
-#footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    height: 180px;
-    clear: both;
-    background: linear-gradient(90deg, rgb(235, 195, 61), #F57538, rgb(235, 195, 61));
-}

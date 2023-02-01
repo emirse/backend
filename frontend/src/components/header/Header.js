@@ -14,6 +14,7 @@ import { logout } from "../../store/reducer/userReducer/authSlice";
 import { userProfile } from "../../store/actions/userAction/profileAction";
 import { Button } from "react-bootstrap";
 import BadgeComp from "../badge/BadgeComp";
+import { Link } from "react-router-dom";
 function Header() {
   let { slug } = useParams;
   const navigate = useNavigate();
@@ -37,7 +38,12 @@ function Header() {
   }, [dispatch, navigate, categories, slug]);
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <Navbar
+      className="d-none d-sm-block d-sm-none d-md-block "
+      bg="dark"
+      variant="dark"
+      expand="lg"
+    >
       <Container fluid>
         <Navbar.Brand href="/">E-commerce</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -58,27 +64,31 @@ function Header() {
                       id="collasible-nav-dropdown"
                     >
                       {c.children.map((a, index) => (
-                        <NavDropdown.Item
-                          key={a.id}
-                          text="primary"
-                          href={`/urunler/${c.slug}/${a.slug}`}
-                        >
-                          <div
-                            style={{
-                              display: "flex",
-                              alignContent: "center",
-                              justifyContent: "space-between",
-
-                              marginLeft: "10px",
-                            }}
+                        <NavDropdown.Item key={a.id} text="primary">
+                          <Link
+                            className="text-decoration-none text-light"
+                            state={a.title}
+                            key={a.id}
+                            text="primary"
+                            to={`/urunler/${c.slug}/${a.slug}`}
                           >
-                            {" "}
-                            <div> {a.title}</div>
-                            <img
-                              style={{ height: "30px", width: "30px" }}
-                              src={`${a.image}`}
-                            />
-                          </div>
+                            <div
+                              style={{
+                                display: "flex",
+                                alignContent: "center",
+                                justifyContent: "space-between",
+
+                                marginLeft: "10px",
+                              }}
+                            >
+                              {" "}
+                              <div> {a.title}</div>
+                              <img
+                                style={{ height: "30px", width: "30px" }}
+                                src={`${a.image}`}
+                              />
+                            </div>
+                          </Link>
 
                           <NavDropdown.Divider />
                         </NavDropdown.Item>
@@ -94,22 +104,8 @@ function Header() {
             {userInfo ? (
               <Nav>
                 <NavDropdown title="Profil" id="collasible-nav-dropdown">
-                  <NavDropdown.Item href="/profileinfo">
-                    Profil
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="/orders">Siparişler</NavDropdown.Item>
-                  <NavDropdown.Item href="/completedorders">
-                    Geçmiş Siparişler
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="/useraddresses">
-                    Adreslerim
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="/profileinfo">
-                    Separated link
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="/rating">
-                    Değerlendirmelerim
-                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/profile">Profil</NavDropdown.Item>
+                  <NavDropdown.Item href="/market">Marketim</NavDropdown.Item>
                 </NavDropdown>
 
                 <LinkContainer to="/">
