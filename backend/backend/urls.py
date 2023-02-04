@@ -18,6 +18,9 @@ from django.urls import path, include
 from base.urls.category_urls import category_urls
 from base.urls.product_urls import product_urls
 from base.urls.user_urls import user_urls
+from base.urls.shop_urls import shop_urls
+from base.urls.upload_files_url import upload_images_urls
+
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -26,6 +29,11 @@ urlpatterns = [
     path("api/user/", include(user_urls)),
     path("api/categories/", include(category_urls)),
     path("api/product/", include(product_urls)),
+    path("api/shop/", include(shop_urls)),
+
+
+
 
 ]
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

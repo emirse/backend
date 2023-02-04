@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from base.models import Category, Product, Shop
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from rest_framework.exceptions import APIException, AuthenticationFailed
+from rest_framework import serializers
 
 
 class UserSerializer(ModelSerializer):
@@ -29,7 +30,7 @@ class UserSerializer(ModelSerializer):
 class UserDetailUpdateSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'username', 'email']
+        fields = ['id', 'first_name', 'last_name', 'email']
 
     def update(self, instance, validated_data):
         return super().update(instance, validated_data)
@@ -60,8 +61,11 @@ class ProductSerializer(ModelSerializer):
 
 
 class ShopSerializer(ModelSerializer):
-    # product=ProductSerializer(many=True,read_only=True)
-    # product =serializers.HyperLinked(many=true,read_obly=True,view_name='url view name')
+
     class Meta:
         model = Shop
         fields = '__all__'
+
+
+# product=ProductSerializer(many=True,read_only=True)
+# product =serializers.HyperLinked(many=true,read_obly=True,view_name='url view name')

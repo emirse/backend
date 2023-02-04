@@ -15,12 +15,18 @@ import { userProfile } from "../../store/actions/userAction/profileAction";
 import { Button } from "react-bootstrap";
 import BadgeComp from "../badge/BadgeComp";
 import { Link } from "react-router-dom";
+import { getShopAction } from "../../store/actions/shopAction/getShopAction";
 function Header() {
   let { slug } = useParams;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.auth);
-
+  const {
+    error: shopError,
+    success: successError,
+    loading: loadingError,
+    shop,
+  } = useSelector((state) => state.getShop);
   const {
     categories,
     loading: loadingCategory,
@@ -32,6 +38,7 @@ function Header() {
     if (!successCategory) {
       dispatch(categoryAction());
       dispatch(userProfile());
+      dispatch(getShopAction());
     }
     if (userInfo) {
     }
@@ -105,7 +112,9 @@ function Header() {
               <Nav>
                 <NavDropdown title="Profil" id="collasible-nav-dropdown">
                   <NavDropdown.Item href="/profile">Profil</NavDropdown.Item>
-                  <NavDropdown.Item href="/market">Marketim</NavDropdown.Item>
+                  {shop && (
+                    <NavDropdown.Item href="/market">Marketim</NavDropdown.Item>
+                  )}
                 </NavDropdown>
 
                 <LinkContainer to="/">

@@ -21,11 +21,9 @@ function ProfileInfo() {
     error: errorUpdate,
     success: successUpdate,
   } = useSelector((state) => state.updateProfile);
-  console.log(error);
   const [first_name, setName] = useState();
   const [last_name, setlastname] = useState();
   const [email, setEmail] = useState();
-  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (!userInfo) {
@@ -48,7 +46,6 @@ function ProfileInfo() {
           first_name: first_name,
           last_name: last_name,
           email: userDetails.email,
-          username: "",
         },
         userInfo.token,
       ])

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from mptt.models import MPTTModel, TreeForeignKey
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 # Create your models here.
 DEFAULT_STATUS = 'draft'
 STATUS = {
@@ -50,8 +52,9 @@ class Shop(models.Model):
     shop_name = models.CharField(max_length=30, null=False, blank=True)
     keywords = models.CharField(max_length=50, null=True, blank=True)
     description = models.CharField(max_length=1000, null=True, blank=True)
-    image = models.ImageField(null=False, blank=False, default="images/")
-    rating = models.IntegerField(default=0, null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, default="images/")
+    rating = models.IntegerField(default=0, validators=[MinValueValidator(
+        0), MaxValueValidator(5)], null=True, blank=True)
     status = models.CharField(
         default=DEFAULT_CONFIRMATION_STATUS,
         choices=CONFIRMATION_STATUS,

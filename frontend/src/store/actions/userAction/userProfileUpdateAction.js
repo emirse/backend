@@ -6,12 +6,10 @@ const backendUrl = "http://localhost:8000";
 
 export const userUpdateProfile = createAsyncThunk(
   "user/update/profile",
-  async ([user, token], { rejectWithValue }) => {
-    console.log(user);
-    console.log(token);
+  async ([user], { rejectWithValue }) => {
     try {
       let response = await axiosInstance.put(
-        `${backendUrl}/api/user/profile/update`,
+        `${backendUrl}/api/user/profile/update/`,
         user
       );
       console.log(response.data);

@@ -63,16 +63,13 @@ class UserDetailUpdateAPIView(APIView):
     def get(self, request):
         user = self.get_object(request)
         serializer = UserSerializer(user)
+        print(serializer.data)
         return Response(serializer.data)
 
     def put(self, request):
         user = self.get_object(request)
-        if request.data['username'] == "":
-            request.data['username'] = user.email
         serializer = UserDetailUpdateSerializer(user, data=request.data)
-
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
-
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

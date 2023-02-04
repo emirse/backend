@@ -4,14 +4,11 @@ import {
   Button,
   Col,
   Container,
-  Nav,
-  Navbar,
-  NavDropdown,
   Offcanvas,
   Row,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import CreateStore from "./CreateStore";
+import CreateShop from "./CreateShop";
 
 function Shop() {
   const [show, setShow] = useState(false);
@@ -60,7 +57,7 @@ function Shop() {
           </Offcanvas>
         </Col>
         <Col>
-          <CreateStore />
+          <h1>sa</h1>
         </Col>
       </Row>
     </Container>

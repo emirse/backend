@@ -22,7 +22,7 @@ import Shop from "./pages/shop/Shop";
 function App() {
   return (
     <>
-      <Container fluid className="m-0 p-0 bg-dark text-light">
+      <Container fluid className="m-0 p-0 ">
         <Header />
 
         <Routes>
